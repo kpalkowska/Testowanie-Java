@@ -1,4 +1,4 @@
-package com.example.junit.zad3;
+package com.example.junit.zad5;
 
 public class LiczbaRzymska {
 

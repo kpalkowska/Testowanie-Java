@@ -1,8 +1,10 @@
-package com.example.junit.zad3;
+package com.example.junit.zad5;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import com.example.junit.zad5.LiczbaRzymska;
 
 public class LiczbaRzymskaTest {
 
