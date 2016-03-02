@@ -25,11 +25,24 @@ public class MyStackTest {
 	}
 	
 	@Test
+	public void arrayNullTest() {
+		try{
+		stack.push(1);
+		stack.pop();
+		stack.arrayTop();
+		fail("My exception");
+		} catch(IllegalArgumentException e){
+			assertTrue(true);
+		}
+	}
+	
+	@Test
 	public void myPopTest() {
+		stack.push(1);
 		stack.push(1);
 		stack.pop();
 		int result = stack.arrayTop();
-		assertThat(result, is(-1));
+		assertThat(result, is(1));
 	}
 	
 	@Test

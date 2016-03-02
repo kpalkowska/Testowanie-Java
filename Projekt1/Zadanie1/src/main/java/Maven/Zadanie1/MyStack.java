@@ -31,6 +31,6 @@ public class MyStack {
     	if(a.size() != 0)
     		return(a.get(a.size() -1));
     	else
-    		return -1;
+    		throw new IllegalArgumentException();
     }
 }
