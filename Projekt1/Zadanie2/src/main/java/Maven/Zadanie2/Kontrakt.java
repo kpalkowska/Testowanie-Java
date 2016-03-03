@@ -2,7 +2,7 @@ package Maven.Zadanie2;
 
 import java.util.Random;
 
-public class PsikusImpl implements Psikus {
+public class Kontrakt implements Psikus {
 
 	public Integer CyfroKrad(Integer liczba) {
 		
@@ -33,8 +33,11 @@ public class PsikusImpl implements Psikus {
 	}
 
 	public Integer Heheszki(Integer liczba) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Random rand = new Random();
+		int nowa = rand.nextInt(liczba);
+
+		return nowa;
 	}
 
 	public boolean Titit(Integer liczba_dziel) {
