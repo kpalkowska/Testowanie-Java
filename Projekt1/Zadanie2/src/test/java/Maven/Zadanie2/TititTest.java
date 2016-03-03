@@ -13,30 +13,30 @@ public class TititTest {
 	private Kontrakt psikus;
 	
 	@Before
-	public void setUp() {
+	public void start() {
 		psikus = new Kontrakt();
 	}
 
 	@Test
-	public void ArgumentIsPositiveNumberTest(){
+	public void ArgumentToLiczbaDodatnia(){
 		assertThat(true, equalTo(psikus.Titit(5)));
 		assertThat(false, equalTo(psikus.Titit(9)));
 	}
 	
 	@Test
-	public void ArgumentIsNegativeNumberTest(){
+	public void ArgumentToLiczbaUjemna(){
 		assertThat(true, equalTo(psikus.Titit(-5)));
 		assertThat(false, equalTo(psikus.Titit(-9)));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void ArgumentIsZeroTest(){
+	public void ArgumentToZero(){
 		psikus.Titit(0);
-		fail("Illegal argument");
+		fail();
 	}
 	
 	@After
-	public void tearDown() {
+	public void koniec() {
 		psikus = null;
 	}
 

@@ -14,31 +14,31 @@ public class CyfroKradTest {
 	private Kontrakt psikus;
 	
 	@Before
-	public void setUp() {
+	public void start() {
 		psikus = new Kontrakt();
 	}
 	
 	@Test
-	public void ArgumentIsPositiveNumberTest() {
+	public void ArgumentToLiczbaDodatnia(){
 		assertThat(psikus.CyfroKrad(123), anyOf(equalTo(12), equalTo(23), equalTo(13)));
 		assertThat(psikus.CyfroKrad(10), either(is(1)).or(is(0)));
 	}
 	
 	@Test
-	public void ArgumentIsNegativeNumberTest(){
+	public void ArgumentToLiczbaUjemna(){
 		assertThat(psikus.CyfroKrad(-10), either(is(-1)).or(is(0)));
 		assertThat(psikus.CyfroKrad(-19), either(is(-1)).or(is(-9)));
 		assertThat(psikus.CyfroKrad(-22), is(-2));
 	}
 	
 	@Test
-	public void ArgumentIsSingleDigitTest(){
+	public void ArgumentToLiczbaJednocyfrowa(){
 		assertNull(psikus.CyfroKrad(-1));
 		assertNull(psikus.CyfroKrad(0));
 	}
 	
 	@After
-	public void tearDown() {
+	public void koniec() {
 		psikus = null;
 	}
 

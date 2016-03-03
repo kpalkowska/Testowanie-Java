@@ -13,30 +13,30 @@ public class HeheszkiTest {
 	private Kontrakt psikus;
 	
 	@Before
-	public void setUp() {
+	public void start() {
 		psikus = new Kontrakt();
 	}
 	
 	@Test
-	public void ArgumentIsPositiveNumberTest(){
+	public void ArgumentToLiczbaDodatnia(){
 		assertThat(psikus.Heheszki(39), lessThan(39));
 		assertThat(psikus.Heheszki(39), greaterThanOrEqualTo(0));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void ArgumentIsNegativeNumberTest(){
+	public void ArgumentToLiczbaUjemna(){
 		assertThat(psikus.Heheszki(-12), lessThan(-12));
 		assertThat(psikus.Heheszki(-12), greaterThanOrEqualTo(0));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void ArgumentIsZeroTest(){
+	public void ArgumentToZero(){
 		assertThat(psikus.Heheszki(0), lessThan(0));
 		assertThat(psikus.Heheszki(0), greaterThanOrEqualTo(0));
 	}
 
 	@After
-	public void tearDown() {
+	public void koniec() {
 		psikus = null;
 	}
 }

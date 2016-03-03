@@ -14,14 +14,14 @@ public class Kontrakt implements Psikus {
 		
 		else {
 			Random rand = new Random();
-			int index = rand.nextInt(100) % liczba.toString().length();
+			int indeks = rand.nextInt(100) % liczba.toString().length();
 			String napis = "";
 			
-			if(index == 0 && liczba < 0)
-				index++;
+			if(indeks == 0 && liczba < 0)
+				indeks++;
 			
 			for(int i = 0; i < liczba.toString().length(); i++){
-				if(i != index)
+				if(i != indeks)
 					napis = napis + liczba.toString().charAt(i);
 			}
 			return Integer.parseInt(napis);
