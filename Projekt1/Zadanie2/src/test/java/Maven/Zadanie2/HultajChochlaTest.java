@@ -1,9 +1,8 @@
 package Maven.Zadanie2;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.lessThan;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.is;
 
 import org.junit.After;
 import org.junit.Before;
@@ -19,8 +18,22 @@ public class HultajChochlaTest {
 	}
 	
 	@Test
-	public void ArgumentToLiczbaDodatnia(){
-		
+	public void ArgumentToLiczbaDodatnia() throws NieudanyPsikusException{
+		assertThat(psikus.HultajChochla(12), is(21));
+		assertThat(psikus.HultajChochla(11), is(11));
+		assertThat(psikus.HultajChochla(397), anyOf(is(793), is(937), is(379)));
+	}
+	
+	@Test
+	public void ArgumentToLiczbaUjemna() throws NieudanyPsikusException{
+		assertThat(psikus.HultajChochla(-12), is(-21));
+		assertThat(psikus.HultajChochla(-11), is(-11));
+		assertThat(psikus.HultajChochla(-397), anyOf(is(-793), is(-937), is(-379)));
+	}
+	
+	@Test(expected= NieudanyPsikusException.class)
+	public void ArgumentToLiczbaJednocyfrowa() throws NieudanyPsikusException{
+		psikus.HultajChochla(1);
 	}
 
 	@After

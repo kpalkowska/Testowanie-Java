@@ -29,8 +29,32 @@ public class Kontrakt implements Psikus {
 	}
 
 	public Integer HultajChochla(Integer liczba) throws NieudanyPsikusException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Random rand = new Random();
+		String nowaLiczba = liczba.toString();
+		
+        if (nowaLiczba.length() == 1) {
+            throw new NieudanyPsikusException();
+        }
+        else {
+	        int i = rand.nextInt(nowaLiczba.length());
+	        int i2 = rand.nextInt(nowaLiczba.length());
+	        	        
+	        char znak1 = nowaLiczba.charAt(i);
+	        char znak2 = nowaLiczba.charAt(i2);
+	        
+	        while(znak1 == '-' || znak2 == '-' || i == i2){
+	        	i = new Random().nextInt(nowaLiczba.length());
+	        	i2 = new Random().nextInt(nowaLiczba.length());
+	        	znak1 = nowaLiczba.charAt(i);
+	        	znak2 = nowaLiczba.charAt(i2);
+	        }
+	
+	        char[] tab = nowaLiczba.toCharArray();
+	        tab[i] = znak2;
+	        tab[i2] = znak1;
+	        return Integer.parseInt(String.valueOf(tab));
+        }
 	}
 
 	public Integer Nieksztaltek(Integer liczba) {

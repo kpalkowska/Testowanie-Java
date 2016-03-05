@@ -25,14 +25,12 @@ public class HeheszkiTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void ArgumentToLiczbaUjemna(){
-		assertThat(psikus.Heheszki(-12), lessThan(-12));
-		assertThat(psikus.Heheszki(-12), greaterThanOrEqualTo(0));
+		psikus.Heheszki(-12);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void ArgumentToZero(){
-		assertThat(psikus.Heheszki(0), lessThan(0));
-		assertThat(psikus.Heheszki(0), greaterThanOrEqualTo(0));
+		psikus.Heheszki(0);
 	}
 
 	@After

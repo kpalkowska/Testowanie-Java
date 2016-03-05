@@ -2,7 +2,6 @@ package Maven.Zadanie2;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
@@ -32,7 +31,6 @@ public class TititTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void ArgumentToZero(){
 		psikus.Titit(0);
-		fail();
 	}
 	
 	@After
