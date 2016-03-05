@@ -34,9 +34,35 @@ public class Kontrakt implements Psikus {
 	}
 
 	public Integer Nieksztaltek(Integer liczba) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		
+		int wystepuje = 0;
+		int znalaz = 0;
+		String output = "";
+		for(int i = 0; i < liczba.toString().length(); i++){
+			char c = liczba.toString().charAt(i);
+			if(znalaz == 0){
+				if(c == '3'){
+					output = output + '8';
+					wystepuje = 1;
+					znalaz = 1;
+				} else if (c == '7'){
+					output = output + '1';
+					wystepuje = 1;
+					znalaz = 1;
+				} else if (c == '6') {
+					output = output + '9';
+					wystepuje = 1;
+					znalaz = 1;
+				} else {
+					output = output + c;
+				}
+			} else {
+				output = output + c;
+			}
+		}
+		
+		return (wystepuje == 1) ? Integer.parseInt(output) : liczba;
+    }
 
 	public Integer Heheszki(Integer liczba) {
 
