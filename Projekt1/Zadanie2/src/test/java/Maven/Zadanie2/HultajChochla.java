@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class HultajChochlaTest {
+public class HultajChochla {
 
 	private Kontrakt psikus;
 	

@@ -1,14 +1,13 @@
 package Maven.Zadanie2;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class HeheszkiTest {
+public class Titit {
 
 	private Kontrakt psikus;
 	
@@ -16,25 +15,27 @@ public class HeheszkiTest {
 	public void start() {
 		psikus = new Kontrakt();
 	}
-	
+
 	@Test
 	public void ArgumentToLiczbaDodatnia(){
-		assertThat(psikus.Heheszki(39), lessThan(39));
-		assertThat(psikus.Heheszki(39), greaterThanOrEqualTo(0));
+		assertThat(true, equalTo(psikus.Titit(5)));
+		assertThat(false, equalTo(psikus.Titit(9)));
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test
 	public void ArgumentToLiczbaUjemna(){
-		psikus.Heheszki(-12);
+		assertThat(true, equalTo(psikus.Titit(-5)));
+		assertThat(false, equalTo(psikus.Titit(-9)));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void ArgumentToZero(){
-		psikus.Heheszki(0);
+		psikus.Titit(0);
 	}
-
+	
 	@After
 	public void koniec() {
 		psikus = null;
 	}
+
 }
