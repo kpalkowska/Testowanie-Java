@@ -2,7 +2,6 @@ package Maven.Zadanie2;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
