@@ -3,6 +3,14 @@ package Maven.Zadanie2;
 import java.util.Random;
 
 public class Kontrakt implements Psikus {
+	
+	private Integer dzielna;
+	
+	public Kontrakt() { }
+	
+	public Kontrakt(Integer liczba) {
+		dzielna = liczba;
+	}
 
 	public Integer CyfroKrad(Integer liczba) {
 		
@@ -103,11 +111,10 @@ public class Kontrakt implements Psikus {
 
 	public boolean Titit(Integer liczba_dziel) {
 
-		int liczba = 120;
 		if(liczba_dziel == 0)
 			throw new IllegalArgumentException();
 		else{
-			if(liczba % liczba_dziel == 0)
+			if(dzielna % liczba_dziel == 0)
 				return true;
 			else return false;
 		}

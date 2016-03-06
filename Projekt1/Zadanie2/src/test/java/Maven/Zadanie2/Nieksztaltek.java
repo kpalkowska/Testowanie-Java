@@ -19,19 +19,19 @@ private Kontrakt psikus;
 	@Test
 	public void ArgumentToLiczbaZCyframiDoZmiany(){
 		assertThat(psikus.Nieksztaltek(37), either(is(31)).or(is(87)));
-		assertThat(psikus.Nieksztaltek(367), either(is(867)).or(is(397)).or(is(361)));
+		assertThat(psikus.Nieksztaltek(-367), either(is(-867)).or(is(-397)).or(is(-361)));
 	}
 	
 	@Test
 	public void ArgumentToLiczbaZJednaCyfraDoZmiany(){
-		assertThat(psikus.Nieksztaltek(700), equalTo(100));
+		assertThat(psikus.Nieksztaltek(-700), equalTo(-100));
 		assertThat(psikus.Nieksztaltek(565), equalTo(595));
 		assertThat(psikus.Nieksztaltek(6), equalTo(9));
 	}
 	
 	@Test
 	public void ArgumentToLiczbaBezCyfrDoZmiany(){
-		assertThat(psikus.Nieksztaltek(5), equalTo(5));
+		assertThat(psikus.Nieksztaltek(-5), equalTo(-5));
 		assertThat(psikus.Nieksztaltek(209), equalTo(209));
 	}
 	
