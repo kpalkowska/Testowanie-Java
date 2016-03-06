@@ -13,44 +13,53 @@ public class MyStackTest {
 	private MyStack stack;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		stack = new MyStack();
 	}
 	
 	@Test
-	public void myPushTest() {
+	public void pushAndTopTest() {
 		stack.push(1);
 		int result = stack.arrayTop();
 		assertThat(result, is(1));
+		
+		assertThat(result, is(1));
+		
+		assertThat(result, is(1));
 	}
 	
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void arrayNullTest() {
-		try{
-		stack.push(1);
-		stack.pop();
 		stack.arrayTop();
-		fail("My exception");
-		} catch(IllegalArgumentException e){
-			assertTrue(true);
-		}
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void popIfArrayIsNullTest() {
+		stack.pop();
 	}
 	
 	@Test
-	public void myPopTest() {
+	public void popTest() {
 		stack.push(1);
-		stack.push(1);
+		stack.push(2);
+		stack.push(3);
 		stack.pop();
 		int result = stack.arrayTop();
-		assertThat(result, is(1));
+		assertThat(result, is(2));
 	}
 	
 	@Test
-	public void myTopTest() {
-		stack.push(2);
-		stack.push(1);
-		int result = stack.arrayTop();
-		assertThat(result, is(1));
+	public void maxIntegerTest(){
+		int max = Integer.MAX_VALUE;
+		stack.push(max);
+		assertEquals(max, stack.arrayTop());
+	}
+	
+	@Test 
+	public void minIntegerTest(){
+		int min = Integer.MIN_VALUE;
+		stack.push(min);
+		assertEquals(min, stack.arrayTop());
 	}
 	
 	@Test
@@ -67,7 +76,7 @@ public class MyStackTest {
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		stack = null;
 	}
 

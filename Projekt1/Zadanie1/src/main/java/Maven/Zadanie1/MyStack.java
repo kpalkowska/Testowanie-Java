@@ -18,7 +18,10 @@ public class MyStack {
 
     public void pop()          
     {
-        a.remove((a.size()- 1));
+    	if(a.size() != 0)
+    		a.remove((a.size()- 1));
+    	else
+    		throw new IllegalArgumentException();
     }
 
     public void push(int x)
