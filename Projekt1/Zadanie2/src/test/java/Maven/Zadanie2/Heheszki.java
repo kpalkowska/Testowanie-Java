@@ -22,16 +22,6 @@ public class Heheszki {
 		assertThat(psikus.Heheszki(39), lessThan(39));
 		assertThat(psikus.Heheszki(39), greaterThanOrEqualTo(0));
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void ArgumentToLiczbaUjemna(){
-		psikus.Heheszki(-12);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void ArgumentToZero(){
-		psikus.Heheszki(0);
-	}
 
 	@After
 	public void koniec() {

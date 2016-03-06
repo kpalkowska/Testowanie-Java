@@ -30,11 +30,6 @@ public class HultajChochla {
 		assertThat(psikus.HultajChochla(-11), is(-11));
 		assertThat(psikus.HultajChochla(-397), anyOf(is(-793), is(-937), is(-379)));
 	}
-	
-	@Test(expected= NieudanyPsikusException.class)
-	public void ArgumentToLiczbaJednocyfrowa() throws NieudanyPsikusException{
-		psikus.HultajChochla(1);
-	}
 
 	@After
 	public void koniec() {

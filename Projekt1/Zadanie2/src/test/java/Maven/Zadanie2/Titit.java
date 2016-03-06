@@ -28,11 +28,6 @@ public class Titit {
 		assertThat(false, equalTo(psikus.Titit(-9)));
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
-	public void ArgumentToZero(){
-		psikus.Titit(0);
-	}
-	
 	@After
 	public void koniec() {
 		psikus = null;
