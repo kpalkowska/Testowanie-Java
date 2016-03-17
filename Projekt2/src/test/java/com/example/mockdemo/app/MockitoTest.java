@@ -1,4 +1,4 @@
-package com.example.mockdemo.messenger;
+package com.example.mockdemo.app;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +11,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.example.mockdemo.app.Messenger;
+import com.example.mockdemo.messenger.ConnectionStatus;
+import com.example.mockdemo.messenger.MalformedRecipientException;
+import com.example.mockdemo.messenger.MessageService;
+import com.example.mockdemo.messenger.SendingStatus;
 
 public class MockitoTest {
 	
