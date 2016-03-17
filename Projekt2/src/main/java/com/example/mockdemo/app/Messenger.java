@@ -1,5 +1,6 @@
 package com.example.mockdemo.app;
 
+import com.example.mockdemo.messenger.ConnectionStatus;
 import com.example.mockdemo.messenger.MalformedRecipientException;
 import com.example.mockdemo.messenger.MessageService;
 import com.example.mockdemo.messenger.SendingStatus;
@@ -18,17 +19,12 @@ public class Messenger {
 	}
 
 	public int testConnection(String server) {
-		switch(ms.checkConnection(server)){
-		case FAILURE:
-			return 1;
-		case SUCCESS:
+		if(ms.checkConnection(server) == ConnectionStatus.SUCCESS)
 			return 0;
-		}
 		return 1;
 	}
 
 	public int sendMessage(String server, String message) {
-
 		int result = -1;
 		
 		try{
@@ -41,8 +37,6 @@ public class Messenger {
 			case SENDING_ERROR:
 				result = 1;
 				break;
-			default:
-				result = -1;
 			}
 		}
 		catch(MalformedRecipientException ex) {

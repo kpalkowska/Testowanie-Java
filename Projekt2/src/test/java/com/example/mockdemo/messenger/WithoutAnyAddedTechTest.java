@@ -1,4 +1,4 @@
-package com.example.mockdemo.app;
+package com.example.mockdemo.messenger;
 
 import static org.junit.Assert.*;
 
