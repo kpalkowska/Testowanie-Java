@@ -1,0 +1,43 @@
+
+(Maven/Zadanie2/run_j_behave_j_unit_test.story)
+Scenario: 1
+Examples:
+Given a new numbers <a> and <b>
+Then titit should <n>
+
+|a|b|n|
+|15|-5|true|
+|16|-5|false|
+|0|12|true|
+
+Example: {a=15, b=-5, n=true}
+Given a new numbers 15 and -5
+Then titit should true
+
+Example: {a=16, b=-5, n=false}
+Given a new numbers 16 and -5
+Then titit should false
+
+Example: {a=0, b=12, n=true}
+Given a new numbers 0 and 12
+Then titit should true
+
+
+Scenario: 2
+When argument is null
+Then titit throw an NullPointerException
+
+Scenario: 3
+Examples:
+When second argument is 0
+Then titit throw an IllegalArgumentException
+
+|a|b|
+|12|0|
+
+Example: {a=12, b=0}
+When second argument is 0
+Then titit throw an IllegalArgumentException
+
+
+
