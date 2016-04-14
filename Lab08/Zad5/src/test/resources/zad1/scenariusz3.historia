@@ -1,0 +1,4 @@
+Scenariusz: Stos błąd szczytu
+Kiedy stos jest pusty
+Wtedy szczyt stosu powinien wyrzucać błąd
+I prawda, że stos jest pusty

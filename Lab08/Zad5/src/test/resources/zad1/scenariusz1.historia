@@ -1,0 +1,14 @@
+Scenariusz: Stos
+Zakładając, że jest nowa wartość 1
+Gdy nowa wartość jest wstawiona
+Wtedy nieprawda, że stos jest pusty
+Zakładając, że jest nowa wartość 2
+Gdy nowa wartość jest wstawiona
+Zakładając, że jest nowa wartość 3
+Gdy nowa wartość jest wstawiona
+Wtedy nieprawda, że stos jest pusty
+Gdy ściągamy ze stosu
+I ściągamy ze stosu
+Wtedy na szczycie jest 1
+Gdy ściągamy ze stosu
+Wtedy prawda, że stos jest pusty

@@ -1,0 +1,4 @@
+Scenariusz: Stos błąd ściągania
+Kiedy stos jest pusty
+Wtedy ściąganie ze stosu powinno wyrzucać błąd
+I prawda, że stos jest pusty
