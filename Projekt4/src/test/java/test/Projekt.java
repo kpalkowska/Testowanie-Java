@@ -47,10 +47,10 @@ public class Projekt {
 	private WebElement createBtn;
 
 	@FindBy(how = How.XPATH, using = "/html/body/div/a[2]")
-	private WebElement backBtn;
+	public WebElement backBtn;
 	
 	@FindBy(how = How.XPATH, using = "/html/body/div/div/ul/li[13]/a")
-	private WebElement lastPage;
+	public WebElement lastPage;
 	
 	@FindBy(how = How.XPATH, using = "/html/body/div/table/tbody/tr[1]/td[5]/a")
 	private WebElement show;
@@ -62,7 +62,7 @@ public class Projekt {
 	public WebElement addedName;
 	
 	@FindBy(how = How.XPATH, using = "/html/body/div/table/tbody/tr[9]/td[7]/a")
-	private WebElement delete;
+	public WebElement delete;
 
 	@FindBy(how = How.XPATH, using = "/html/body/div/div[1]")
 	private WebElement info;
@@ -110,7 +110,14 @@ public class Projekt {
 		author.sendKeys("12");
 		img.sendKeys("http://blog.zooplus.pl/wp-content/uploads/sites/8/2014/03/maly_kotek.jpg");
 		createBtn.click();
+	}
+	
+	public void clickBack(){
 		backBtn.click();
+	}
+	
+	public void lastPage(){
+		logo.click();
 		lastPage.click();
 	}
 	
