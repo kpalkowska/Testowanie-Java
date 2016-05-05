@@ -101,4 +101,58 @@ public class Projekt {
 		loginBtn.click();
 	}
 	
+	public void createBook(){
+		logo.click();
+		add.click();
+		name.sendKeys("Test");
+		desc.sendKeys("Test");
+		price.sendKeys("10.99");
+		author.sendKeys("12");
+		img.sendKeys("http://blog.zooplus.pl/wp-content/uploads/sites/8/2014/03/maly_kotek.jpg");
+		createBtn.click();
+		backBtn.click();
+		lastPage.click();
+	}
+	
+	public void createEmptyBook(){
+		logo.click();
+		add.click();
+		createBtn.click();
+	}
+	
+	public String addedBook(){
+		return addedName.getText();
+	}
+	
+	public void deleteBook(){
+		logo.click();
+		lastPage.click();
+		delete.click();
+	}
+	
+	public String infoBook(){
+		return info.getText();
+	}
+	
+	public String titleBook(){
+		return title.getText();
+	}
+	
+	public String notLogged(){
+		return notLogged.getText();
+	}
+	
+	public void showBook(){
+		logo.click();
+		show.click();
+	}
+	
+	public void logout(){
+		account.click();
+		logout.click();
+	}
+	
+	public String emptyError(){
+		return emptyError.getText();
+	}
 }
