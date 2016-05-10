@@ -22,6 +22,27 @@ public class Projekt {
 	@FindBy(how = How.XPATH, using = "/html/body/div/div/div/form/input[5]")
 	private WebElement loginBtn;
 	
+	@FindBy(how = How.XPATH, using = "/html/body/div/div/a")
+	private WebElement signUpBtn;
+	
+	@FindBy(id = "user_name")
+	private WebElement username;
+	
+	@FindBy(id = "user_email")
+	private WebElement userEmail;
+	
+	@FindBy(id = "user_password")
+	private WebElement userPass;
+	
+	@FindBy(id = "user_password_confirmation")
+	private WebElement passConfirm;
+	
+	@FindBy(how = How.XPATH, using = "id('new_user')/input[7]")
+	private WebElement signUp;
+
+	@FindBy(how = How.XPATH, using = "id('error_explanation')/ul/li[1]")
+	public WebElement signUpError;
+	
 	@FindBy(id = "logo")
 	private WebElement logo;
 	
@@ -49,6 +70,12 @@ public class Projekt {
 	@FindBy(how = How.XPATH, using = "/html/body/div/a[2]")
 	public WebElement backBtn;
 	
+	@FindBy(how = How.XPATH, using = "/html/body/div/table/tbody/tr[1]/td[6]/a")
+	private WebElement editLink;
+
+	@FindBy(how = How.XPATH, using = "/html/body/div/h1")
+	public WebElement updateTitle;
+
 	@FindBy(how = How.XPATH, using = "/html/body/div/div/ul/li[13]/a")
 	public WebElement lastPage;
 	
@@ -87,6 +114,19 @@ public class Projekt {
 		PageFactory.initElements(driver, this);
 	}
 	
+	public void signUp(){
+		signUpBtn.click();
+		username.sendKeys("Test");
+		userEmail.sendKeys("kp.elblag@wp.pl");
+		userPass.sendKeys("testowy");
+		passConfirm.sendKeys("testowy");
+		signUp.click();
+	}
+	
+	public String signUpError(){
+		return signUpError.getText();
+	}
+	
 	public void login(){
 		login.click();
 		email.sendKeys("kp.elblag@wp.pl");
@@ -119,6 +159,15 @@ public class Projekt {
 	public void lastPage(){
 		logo.click();
 		lastPage.click();
+	}
+	
+	public void editBook(){
+		logo.click();
+		editLink.click();
+	}
+	
+	public String updateTitle(){
+		return updateTitle.getText();
 	}
 	
 	public void createEmptyBook(){

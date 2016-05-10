@@ -25,12 +25,24 @@ public class ProjektTest {
 	}
 	
 	@Test
+	public void SignUpTest(){
+		Projekt projekt = new Projekt(driver);
+		projekt.signUp();
+		
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        wait.until(ExpectedConditions.visibilityOf(projekt.signUpError));
+		String error = projekt.signUpError();
+		Assert.assertEquals("Email has already been taken", error);
+	}
+	
+	@Test
 	public void LoginTest(){
 		Projekt projekt = new Projekt(driver);
 		projekt.login();
+		String title = driver.getTitle();
 		
-		Assert.assertEquals("Klaudia | Books App", driver.getTitle());
 		projekt.logout();
+		Assert.assertEquals("Klaudia | Books App", title);
 	}
 	
 	@Test
@@ -55,8 +67,9 @@ public class ProjektTest {
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.visibilityOf(projekt.addedName));
 		String name = projekt.addedBook();
-		Assert.assertEquals("Test", name);
+		
 		projekt.logout();
+		Assert.assertEquals("Test", name);
 	}
 	
 	@Test
@@ -68,8 +81,9 @@ public class ProjektTest {
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.visibilityOf(projekt.emptyError));
 		String name = projekt.emptyError();
-		Assert.assertEquals("The form contains 9 errors.", name);
+		
 		projekt.logout();
+		Assert.assertEquals("The form contains 9 errors.", name);
 	}
 	
 	@Test
@@ -80,12 +94,27 @@ public class ProjektTest {
 		
         WebDriverWait wait = new WebDriverWait(driver, 15);
 		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-
 		alert.accept();
 		
 		String info = projekt.infoBook();
-		Assert.assertEquals("Book was successfully destroyed.", info);
+		
 		projekt.logout();
+		Assert.assertEquals("Book was successfully destroyed.", info);
+	}
+	
+	@Test
+	public void UpdateTest(){
+		Projekt projekt = new Projekt(driver);
+		projekt.login();
+		projekt.editBook();
+		
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.urlToBe("https://books1.herokuapp.com/books/3/edit"));
+
+		String info = projekt.updateTitle();
+		
+		projekt.logout();
+		Assert.assertEquals("Editing Book", info);
 	}
 	
 	@Test
@@ -95,8 +124,9 @@ public class ProjektTest {
 		projekt.showBook();
 		
 		String title = projekt.titleBook();
-		Assert.assertEquals("Name: Death Be Not Proud", title);
+		
 		projekt.logout();
+		Assert.assertEquals("Name: Dying of the Light", title);
 	}
 	
 	@AfterClass

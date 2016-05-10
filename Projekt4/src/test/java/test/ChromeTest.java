@@ -26,15 +26,28 @@ public class ChromeTest {
 	}
 	
 	@Test
+	public void SignUpTest(){
+		Projekt projekt = new Projekt(driver);
+		projekt.signUp();
+		
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        wait.until(ExpectedConditions.visibilityOf(projekt.signUpError));
+		String error = projekt.signUpError();
+		Assert.assertEquals("Email has already been taken", error);
+	}
+	
+	@Test
 	public void LoginTest(){
 		Projekt projekt = new Projekt(driver);
 		projekt.login();
 		
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.urlToBe("https://books1.herokuapp.com/users/1"));
-		Assert.assertEquals("Klaudia | Books App", driver.getTitle());
+        String title = driver.getTitle();
 		projekt.logout();
 		wait.until(ExpectedConditions.urlToBe("https://books1.herokuapp.com/"));
+		
+		Assert.assertEquals("Klaudia | Books App", title);
 	}
 	
 	//@Test
@@ -61,9 +74,11 @@ public class ChromeTest {
 		projekt.clickBack();
 		
 		wait.until(ExpectedConditions.elementToBeClickable(projekt.lastPage));
-		Assert.assertEquals("Index | Books App", driver.getTitle());
+		String title = driver.getTitle();
 		projekt.logout();
 		wait.until(ExpectedConditions.urlToBe("https://books1.herokuapp.com/"));
+		
+		Assert.assertEquals("Index | Books App", title);
 	}
 	
 	@Test
@@ -77,9 +92,10 @@ public class ChromeTest {
 		
         wait.until(ExpectedConditions.visibilityOf(projekt.emptyError));
 		String name = projekt.emptyError();
-		Assert.assertEquals("The form contains 9 errors.", name);
 		projekt.logout();
 		wait.until(ExpectedConditions.urlToBe("https://books1.herokuapp.com/"));
+		
+		Assert.assertEquals("The form contains 9 errors.", name);
 	}
 	
 	//@Test
@@ -96,9 +112,28 @@ public class ChromeTest {
 		alert.accept();
 		
 		String info = projekt.infoBook();
-		Assert.assertEquals("Book was successfully destroyed.", info);
 		projekt.logout();
 		wait.until(ExpectedConditions.urlToBe("https://books1.herokuapp.com/"));
+		
+		Assert.assertEquals("Book was successfully destroyed.", info);
+	}
+	
+	//@Test
+	public void UpdateTest(){
+		Projekt projekt = new Projekt(driver);
+		projekt.login();
+		
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.urlToBe("https://books1.herokuapp.com/users/1"));
+		
+		projekt.editBook();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+		String info = projekt.updateTitle();
+		projekt.logout();
+		wait.until(ExpectedConditions.urlToBe("https://books1.herokuapp.com/"));
+		
+		Assert.assertEquals("Editing Book", info);
 	}
 	
 	@Test
@@ -111,9 +146,10 @@ public class ChromeTest {
 		projekt.showBook();
 		
 		String title = projekt.titleBook();
-		Assert.assertEquals("Name: Death Be Not Proud", title);
 		projekt.logout();
 		wait.until(ExpectedConditions.urlToBe("https://books1.herokuapp.com/"));
+		
+		Assert.assertEquals("Name: Dying of the Light", title);
 	}
 	
 	@AfterClass
