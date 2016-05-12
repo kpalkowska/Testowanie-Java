@@ -22,6 +22,8 @@ public class EmailSteps extends Steps{
 	
 	private final Pages pages;
 	
+	String index;
+	
 	public EmailSteps(Pages pages) {
 		this.pages = pages;
 	}
@@ -42,6 +44,20 @@ public class EmailSteps extends Steps{
     public void userIsLoggedInteria(){
     	String result = pages.interia().findElement(By.xpath("id('ng-app')/body/section[1]/div/div/header[2]/div[2]/div[1]")).getText();
         Assert.assertEquals("Test1", result);
+    }
+    
+    @When("user enter bad interia login and password")
+    public void userBadLoginToInteria(){        
+        pages.interia().findElement(By.id("formEmail")).sendKeys("seleniumjava@interia.pl");
+        pages.interia().findElement(By.id("formPassword")).sendKeys("123");
+        pages.interia().findElement(By.id("formSubmit")).click();
+    }
+    
+    @Then("user is not logged in interia")
+    public void userIsNotLoggedInteria(){
+    	String result = pages.interia().findElement(By.id("errorMsg")).getText();
+        Assert.assertEquals("#1801 B³êdny login lub has³o", result);
+        pages.interia().findElement(By.id("formEmail")).clear();
     }
     
     @When("user send email from interia")
@@ -85,6 +101,8 @@ public class EmailSteps extends Steps{
        	pages.wp().findElement(By.linkText("Odebrane")).click();
         pages.wp().findElement(By.xpath("id('bxMessagesBody')/div/div[6]/table/tbody/tr/td[6]/div")).click();
         pages.wp().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        
+        index = pages.wp().getWindowHandle();
     }
     
     @Then("email was received at wp")
@@ -124,5 +142,17 @@ public class EmailSteps extends Steps{
         Assert.assertEquals("Twoja wiadomoœæ zosta³a wys³ana", result);
         
         pages.wp().findElement(By.linkText("zamknij")).click();
+    }
+    
+    @When("user deletes email")
+    public void emailDelete(){
+    	pages.wp().switchTo().window(index);
+    	pages.wp().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        pages.wp().findElement(By.linkText("usuñ")).click();
+    }
+    
+    @Then("email is deleted")
+    public void end(){
+    	pages.wp().close();
     }
 }

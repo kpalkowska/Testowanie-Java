@@ -1,6 +1,8 @@
 Scenario: User try to send email
  
 Given user is on interia page
+When user enter bad interia login and password
+Then user is not logged in interia
 When user enter interia login and password
 Then user is logged in interia
 When user send email from interia
@@ -15,3 +17,5 @@ When user receive email from interia
 Then email was received at wp
 When user answer email from wp
 Then email was send to interia
+When user deletes email
+Then email is deleted
