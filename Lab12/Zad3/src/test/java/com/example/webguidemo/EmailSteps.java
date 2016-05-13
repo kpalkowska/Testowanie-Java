@@ -1,8 +1,5 @@
 package com.example.webguidemo;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
 import org.jbehave.core.annotations.Given;
@@ -12,17 +9,13 @@ import org.jbehave.core.steps.Steps;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EmailSteps extends Steps{
 	
 	private final Pages pages;
 	
 	String index;
+	String email;
 	
 	public EmailSteps(Pages pages) {
 		this.pages = pages;
@@ -34,7 +27,8 @@ public class EmailSteps extends Steps{
     }
  
     @When("user enter interia login and password")
-    public void userLoginToInteria(){        
+    public void userLoginToInteria(){
+    	pages.interia().findElement(By.id("formEmail")).clear();
         pages.interia().findElement(By.id("formEmail")).sendKeys("seleniumjava@interia.pl");
         pages.interia().findElement(By.id("formPassword")).sendKeys("");
         pages.interia().findElement(By.id("formSubmit")).click();
@@ -57,17 +51,32 @@ public class EmailSteps extends Steps{
     public void userIsNotLoggedInteria(){
     	String result = pages.interia().findElement(By.id("errorMsg")).getText();
         Assert.assertEquals("#1801 B³êdny login lub has³o", result);
-        pages.interia().findElement(By.id("formEmail")).clear();
     }
     
-    @When("user send email from interia")
-    public void userSendEmail(){        
+    @When("user try to send without receiver")
+    public void userDoesntEnterReceiver(){        
        	pages.interia().findElement(By.xpath("id('ng-app')/body/section[5]/section[1]/div/section/ul/li[1]/a")).click();
-        pages.interia().findElement(By.xpath("id('ng-app')/body/div[1]/div/div[2]/div/div[1]/div[4]/div[3]/div/textarea")).sendKeys("seleniumjava@wp.pl");
-        pages.interia().findElement(By.xpath("id('ng-app')/body/div[1]/div/div[2]/div/div[1]/div[4]/div[3]/div/textarea")).sendKeys(Keys.ENTER);
+       	email = pages.interia().getWindowHandle();
         
     	pages.interia().findElement(By.xpath("id('ng-app')/body/div[1]/div/div[2]/div/div[1]/div[5]/input")).sendKeys("Test");
         pages.interia().findElement(By.xpath("/html/body")).sendKeys("Test");
+        
+        pages.interia().findElement(By.xpath("id('ng-app')/body/div[1]/div/div[2]/div/div[3]/button[1]")).click();
+    }
+    
+    @Then("email was not send")
+    public void emailWasNotSend(){
+    	pages.interia().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        String result = pages.interia().findElement(By.xpath("id('ng-app')/body/div[2]/div/ul/li/div")).getText();
+        Assert.assertEquals("Wpisz odbiorców!", result);
+        pages.interia().findElement(By.xpath("id('ng-app')/body/div[2]/div/ul/li/div/div/a")).click();
+    }
+    
+    @When("user enter receiver")
+    public void userSendEmail(){
+    	pages.interia().switchTo().window(email);
+        pages.interia().findElement(By.xpath("id('ng-app')/body/div[1]/div/div[2]/div/div[1]/div[4]/div[3]/div/textarea")).sendKeys("seleniumjava@wp.pl");
+        pages.interia().findElement(By.xpath("id('ng-app')/body/div[1]/div/div[2]/div/div[1]/div[4]/div[3]/div/textarea")).sendKeys(Keys.ENTER);
         
         pages.interia().findElement(By.xpath("id('ng-app')/body/div[1]/div/div[2]/div/div[3]/button[1]")).click();
     }
@@ -113,6 +122,8 @@ public class EmailSteps extends Steps{
     
     @When("user answer email from wp")
     public void userAnswerEmail(){
+       	pages.wp().findElement(By.linkText("Odebrane")).click();
+        pages.wp().findElement(By.xpath("id('bxMessagesBody')/div/div[6]/table/tbody/tr/td[6]/div")).click();
        	pages.wp().findElement(By.xpath("id('messageBody')/div/div[1]/table/tbody/tr/td[1]/table/tbody/tr/td[2]/div/a[1]")).click();
        	
         for(String winHandle : pages.wp().getWindowHandles()){
@@ -121,7 +132,7 @@ public class EmailSteps extends Steps{
         
         String oldWindow = pages.wp().getWindowHandle();
         
-       	pages.wp().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+       	pages.wp().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         pages.wp().findElement(By.linkText("wstaw obrazek")).click();
        	
         for(String winHandle : pages.wp().getWindowHandles()){
