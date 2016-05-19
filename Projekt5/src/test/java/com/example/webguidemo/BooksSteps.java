@@ -52,7 +52,7 @@ public class BooksSteps extends Steps{
     public void userIsNotLoggedInteria(){
     	pages.books().findElement(By.xpath("/html/body/div/a[2]")).click();
     	pages.books().findElement(By.xpath("/html/body/div/div/ul/li[13]/a")).click();
-    	String result = pages.books().findElement(By.xpath("/html/body/div/table/tbody/tr[9]/td[1]")).getText();
+    	String result = pages.books().findElement(By.xpath("/html/body/div/table/tbody/tr[7]/td[1]")).getText();
         Assert.assertEquals("Test", result);
         
         pages.books().close();

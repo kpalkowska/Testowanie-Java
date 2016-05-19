@@ -1,0 +1,6 @@
+Scenariusz: Books App
+Zakładając, że user is on home page
+Gdy user enter login and password
+Wtedy user is logged in
+Gdy user add new book
+Wtedy book was added
