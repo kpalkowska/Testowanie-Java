@@ -1,5 +1,6 @@
 package com.example.webguidemo;
 
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -19,11 +20,13 @@ public class BooksSteps extends Steps{
 	}
 	
 	@Given("user is on home page")
+	@Alias("użytkownik jest na stronie głównej")
     public void userIsOnInteriaPage(){        
         pages.books().open();     
     }
  
     @When("user enter login and password")
+    @Alias("użytkownik poda login i hasło")
     public void userLoginToInteria(){
     	pages.books().findElement(By.xpath("/html/body/header/div/nav/ul/li[3]/a")).click();
         pages.books().findElement(By.id("session_email")).sendKeys("kp.elblag@wp.pl");
@@ -32,11 +35,13 @@ public class BooksSteps extends Steps{
     }
     
     @Then("user is logged in")
+    @Alias("użytkownik jest zalogowany")
     public void userIsLoggedInteria(){
     	Assert.assertEquals("Klaudia | Books App", pages.books().getTitle());
     }
     
     @When("user add new book")
+    @Alias("użytkownik doda nową książkę")
     public void userBadLoginToInteria(){        
         pages.books().findElement(By.id("logo")).click();
         pages.books().findElement(By.xpath("/html/body/div/a")).click();
@@ -49,6 +54,7 @@ public class BooksSteps extends Steps{
     }
     
     @Then("book was added")
+    @Alias("książka jest dodana")
     public void userIsNotLoggedInteria(){
     	pages.books().findElement(By.xpath("/html/body/div/a[2]")).click();
     	pages.books().findElement(By.xpath("/html/body/div/div/ul/li[13]/a")).click();
