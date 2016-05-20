@@ -22,7 +22,8 @@ public class BooksSteps extends Steps{
 	@Given("user is on home page")
 	@Alias("użytkownik jest na stronie głównej")
     public void userIsOnInteriaPage(){        
-        pages.books().open();     
+        pages.books().open();
+        Assert.assertEquals("https://books1.herokuapp.com/", pages.books().getCurrentUrl());
     }
  
     @When("user enter login and password")
@@ -51,6 +52,8 @@ public class BooksSteps extends Steps{
         pages.books().findElement(By.id("book_author_id")).sendKeys("1");
         pages.books().findElement(By.id("book_img_url")).sendKeys("http://blog.zooplus.pl/wp-content/uploads/sites/8/2014/03/maly_kotek.jpg");
         pages.books().findElement(By.xpath("id('new_book')/div[6]/input")).click();
+        String result = pages.books().findElement(By.id("notice")).getText();
+        Assert.assertEquals("Book was successfully created.", result);
     }
     
     @Then("book was added")

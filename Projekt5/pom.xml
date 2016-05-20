@@ -28,6 +28,6 @@
 	    	<artifactId>jbehave-maven-plugin</artifactId>
 	    	<version>4.0.5</version>
 	    	<scope>test</scope>
-	    </dependency>
+	    </dependency>    
 	</dependencies>
 </project>

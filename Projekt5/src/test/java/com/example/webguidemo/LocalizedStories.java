@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
-import org.jbehave.core.Embeddable;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.Keywords;
 import org.jbehave.core.i18n.LocalizedKeywords;
@@ -25,7 +24,6 @@ import org.jbehave.core.model.ExamplesTableFactory;
 import org.jbehave.core.parsers.RegexStoryParser;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.reporters.FilePrintStreamFactory.ResolveToSimpleName;
-import org.jbehave.core.steps.CandidateSteps;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.jbehave.core.steps.MarkUnmatchedStepsAsPending;
@@ -98,12 +96,6 @@ public abstract class LocalizedStories extends JUnitStories {
                 lifecycleSteps,
                 new WebDriverScreenshotOnFailure(driverProvider, configuration.storyReporterBuilder()));
     }
-
-    /*@Override
-    public List<CandidateSteps> candidateSteps() {
-        return new InstanceStepsFactory(configuration(), localizedSteps(), new BooksSteps(pages))
-                .createCandidateSteps();
-    }*/
 
     @Override
     protected List<String> storyPaths() {

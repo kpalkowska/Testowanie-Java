@@ -1,6 +1,9 @@
-Scenariusz: Books App
+Scenariusz: Login
 Zakładając, że użytkownik jest na stronie głównej
 Gdy użytkownik poda login i hasło
 Wtedy użytkownik jest zalogowany
+
+Scenariusz: Dodawanie książki
+Zakładając, że użytkownik jest na stronie głównej
 Gdy użytkownik doda nową książkę
 Wtedy książka jest dodana
